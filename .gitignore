@@ -1,0 +1,27 @@
+### PyCharm / JetBrains IDEs ###
+.idea/
+*.iml
+
+### Python Compiled Files ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+### Virtual Environments ###
+.venv/
+venv/
+env/
+ENV/
+
+### Web / Site Frontend Dependencies ###
+node_modules/
+/dist/
+/build/
+.env
+.env.local
+
+### Databases & OS Files ###
+*.sqlite3
+.DS_Store
+Thumbs.db
