@@ -115,6 +115,7 @@
             font-size: 1rem;
             text-transform: uppercase;
             color: var(--accent);
+            margin-top: 2rem;
             margin-bottom: 1rem;
         }
 
@@ -194,6 +195,45 @@
             background-color: var(--accent); /* Заливка точки цветом */
             box-shadow: 0 0 12px var(--accent); /* Свечение вокруг точки */
             transform: scale(1.2); /* Увеличение точки */
+        }
+
+        /* Контейнер кнопок */
+        .timeline-filters {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Стилизованные прямоугольники кнопок */
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--timeline-line);
+            color: var(--text-main);
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 4px; /* Прямоугольник со слегка скругленными углами */
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Эффект наведения */
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Активное состояние (только один в один момент времени) */
+        .filter-btn.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-color); /* Контрастный текст на фоне акцента */
+        }
+
+        /* Скрытие элементов, не подошедших под фильтр */
+        .timeline-item.is-hidden {
+            display: none;
         }
 
         .project-date {
@@ -400,6 +440,9 @@
                             Telegram
                         </a>
                     </li>
+                </ul>
+                <h3>Media</h3>
+                <ul class="contact-links">
                     <li>
                         <a href="https://t.me/d1_01m365" target="_blank">
                             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -431,16 +474,32 @@
         <!-- Правая колонка: Временная шкала проектов (строго справа от фото и текста) -->
         <div class="timeline-container">
             <h2 class="timeline-title">Some Projects Timeline</h2>
+
+            <!-- Контейнер для фильтров -->
+            <div class="timeline-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="featured">Featured</button>
+                <button class="filter-btn" data-filter="unreal">Unreal Engine</button>
+                <button class="filter-btn" data-filter="misc">Misc</button>
+            </div>
+
             <div class="timeline">
-                <article class="timeline-item" data-target="project-morphsword">
-                    <div class="project-date">May 2026</div>
+                <article class="timeline-item" data-category="featured misc">
+                    <div class="project-date">June 2023 - Ongoing</div>
+                    <div class="timeline-item-header">
+                        <h3>Desktop WPF/Avalonia Client</h3>
+                    </div>
+                    <p style="color: var(--text-muted)">C# WPF/Avalonia Developer (ООО "ИРЗ")</p>
+                </article>
+                <article class="timeline-item" data-category="featured unreal" data-target="project-morphsword">
+                    <div class="project-date">May 2026 - Ongoing</div>
                     <div class="timeline-item-header">
                         <h3>Morphsword</h3>
                         <span class="jam-tag">Siberian Game Jam</span>
                     </div>
                     <p style="color: var(--text-muted)">Project Lead & Programmer in a team of 12 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-uj9">
+                <article class="timeline-item" data-category="unreal" data-target="project-uj9">
                     <div class="project-date">March 2026</div>
                     <div class="timeline-item-header">
                         <h3>uj9</h3>
@@ -449,13 +508,13 @@
                     <p style="color: var(--text-muted)">Learning some new features of engine in small team of 4
                         people</p>
                 </article>
-                <article class="timeline-item" data-target="project-underwater">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-underwater">
                     <div class="project-date">February 2026 - June 2026</div>
                     <h3>Ложное течение</h3>
                     <p style="color: var(--text-muted)">Programmer for 2.5d shooter story-focused game demo in
                         small team of 4 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-ug8">
+                <article class="timeline-item" data-category="unreal" data-target="project-ug8">
                     <div class="project-date">January 2026</div>
                     <div class="timeline-item-header">
                         <h3>ug8</h3>
@@ -463,7 +522,7 @@
                     </div>
                     <p style="color: var(--text-muted)">Experimenting with multiplayer and code stuff, team of 3</p>
                 </article>
-                <article class="timeline-item" data-target="project-lookinside">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-lookinside">
                     <div class="project-date">November 2025</div>
                     <div class="timeline-item-header">
                         <h3>LoOk Inside</h3>
@@ -471,14 +530,23 @@
                     </div>
                     <p style="color: var(--text-muted)">Project Lead & Programmer in a team of 12 people</p>
                 </article>
-                <article class="timeline-item">
+                <article class="timeline-item" data-category="featured misc" data-target="project-fountains2025">
+                    <div class="project-date">August 2025 - September 2025</div>
+                    <div class="timeline-item-header">
+                        <h3>Код в городе 2025</h3>
+                    </div>
+                    <p style="color: var(--text-muted)">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </article>
+                <article class="timeline-item" data-category="unreal">
                     <div class="project-date">March 2025 - July 2025</div>
                     <div class="timeline-item-header">
                         <h3>Closed commercial project</h3>
                     </div>
                     <p style="color: var(--text-muted)">Programmer</p>
                 </article>
-                <article class="timeline-item">
+                <article class="timeline-item" data-category="unreal">
                     <div class="project-date">May 2025</div>
                     <div class="timeline-item-header">
                         <h3>Labyrinth Protocol</h3>
@@ -486,7 +554,7 @@
                     </div>
                     <p style="color: var(--text-muted)">Unsucceeded project with multiplayer and team of 13 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-rememberwhen">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-rememberwhen">
                     <div class="project-date">November 2024</div>
                     <div class="timeline-item-header">
                         <h3>Remember When</h3>
@@ -494,7 +562,16 @@
                     </div>
                     <p style="color: var(--text-muted)">Project Lead & Programmer in a team of 8 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-catharsis">
+                <article class="timeline-item" data-category="featured misc" data-target="project-fountains2024">
+                    <div class="project-date">August 2024 - September 2024</div>
+                    <div class="timeline-item-header">
+                        <h3>Код в городе 2024</h3>
+                    </div>
+                    <p style="color: var(--text-muted)">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </article>
+                <article class="timeline-item" data-category="featured unreal" data-target="project-catharsis">
                     <div class="project-date">May 2024</div>
                     <div class="timeline-item-header">
                         <h3>Catharsis</h3>
@@ -502,7 +579,7 @@
                     </div>
                     <p style="color: var(--text-muted)">Project Lead & Multiplayer Programmer in a team of 8 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-outoftime">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-outoftime">
                     <div class="project-date">November 2023</div>
                     <div class="timeline-item-header">
                         <h3>Out of Time</h3>
@@ -510,7 +587,16 @@
                     </div>
                     <p style="color: var(--text-muted)">Project Lead & Multiplayer Programmer in a team of 7 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-poabab">
+                <article class="timeline-item" data-category="featured misc" data-target="project-fountains2023">
+                    <div class="project-date">August 2023 - September 2023</div>
+                    <div class="timeline-item-header">
+                        <h3>Код в городе 2023</h3>
+                    </div>
+                    <p style="color: var(--text-muted)">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </article>
+                <article class="timeline-item" data-category="featured unreal" data-target="project-poabab">
                     <div class="project-date">November 2022</div>
                     <div class="timeline-item-header">
                         <h3>Poabab</h3>
@@ -518,7 +604,7 @@
                     </div>
                     <p style="color: var(--text-muted)">First UE5 multiplayer project with *my* small team</p>
                 </article>
-                <article class="timeline-item" data-target="project-thereandback">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-thereandback">
                     <div class="project-date">May 2022</div>
                     <div class="timeline-item-header">
                         <h3>Туда и обратно</h3>
@@ -526,7 +612,7 @@
                     </div>
                     <p style="color: var(--text-muted)">First ever game jam as Programmer in a team of 15 people</p>
                 </article>
-                <article class="timeline-item" data-target="project-chemical">
+                <article class="timeline-item" data-category="featured unreal" data-target="project-chemical">
                     <div class="project-date">2018</div>
                     <div class="timeline-item-header">
                         <h3>Mendeleev's periodic table with lootboxes</h3>
@@ -598,9 +684,8 @@
                     </a>
                     <a href="https://aya-sayed.itch.io/lozhnoye-techeniye?secret=GvKhExfWXVqQPmvnGrw0gRR9eI"
                        target="_blank" class="project-link link-download">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
-                             fill="currentColor">
-                            <path d="M4.3 3A2.3 2.3 0 0 0 2 5.3v2.8c0 .8.4 1.5 1 2v8.6A2.3 2.3 0 0 0 5.3 21h13.4a2.3 2.3 0 0 0 2.3-2.3v-8.6c.6-.5 1-1.2 1-2V5.3A2.3 2.3 0 0 0 19.7 3H4.3zm1.2 4.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm13 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm-11 5.3h9a.5.5 0 0 1 .5.5v1.2a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.2a.5.5 0 0 1 .5-.5zm.5 4.5h8a.5.5 0 0 1 .5.5v.6a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-.6a.5.5 0 0 1 .5-.5z"/>
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                         </svg>
                         Download
                     </a>
@@ -694,9 +779,8 @@
                     </a>
                     <a href="https://itch.io/jam/sibgamejam-nov-2025/rate/4013269" target="_blank"
                        class="project-link link-page">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
-                             fill="currentColor">
-                            <path d="M4.3 3A2.3 2.3 0 0 0 2 5.3v2.8c0 .8.4 1.5 1 2v8.6A2.3 2.3 0 0 0 5.3 21h13.4a2.3 2.3 0 0 0 2.3-2.3v-8.6c.6-.5 1-1.2 1-2V5.3A2.3 2.3 0 0 0 19.7 3H4.3zm1.2 4.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm13 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm-11 5.3h9a.5.5 0 0 1 .5.5v1.2a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.2a.5.5 0 0 1 .5-.5zm.5 4.5h8a.5.5 0 0 1 .5.5v.6a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-.6a.5.5 0 0 1 .5-.5z"/>
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                         </svg>
                         Game page
                     </a>
@@ -708,6 +792,28 @@
                             <path fill="#11A861" d="M6.2 12.67H2.05L4.2 8.94h4.15L6.2 12.67z"/>
                         </svg>
                         Download last build
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-fountains2025">
+            <div class="card-image-wrapper">
+                <img src="images/fountains2025/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Код в городе 2025</h3>
+                    <p class="card-text">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </div>
+                <div class="card-buttons">
+                    <a href="https://t.me/d1_01m365/578" target="_blank" class="project-link link-telegram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.703.064-1.237-.465-1.917-.911-1.063-.7-1.664-1.135-2.697-1.815-1.195-.787-.42-1.22.26-1.93.18-.185 3.255-2.986 3.315-3.24.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.79.027-.216.324-.437.893-.663 3.506-1.523 5.845-2.528 7.017-3.013 3.344-1.385 4.038-1.625 4.492-1.633.1 0 .324.025.469.143a.475.475 0 0 1 .154.341c-.006.072-.012.245-.018.423z"/>
+                        </svg>
+                        Post in blog
                     </a>
                 </div>
             </div>
@@ -732,9 +838,8 @@
                     </a>
                     <a href="https://itch.io/jam/sibgamejam-nov-2024/rate/3075426" target="_blank"
                        class="project-link link-page">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
-                             fill="currentColor">
-                            <path d="M4.3 3A2.3 2.3 0 0 0 2 5.3v2.8c0 .8.4 1.5 1 2v8.6A2.3 2.3 0 0 0 5.3 21h13.4a2.3 2.3 0 0 0 2.3-2.3v-8.6c.6-.5 1-1.2 1-2V5.3A2.3 2.3 0 0 0 19.7 3H4.3zm1.2 4.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm13 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm-11 5.3h9a.5.5 0 0 1 .5.5v1.2a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.2a.5.5 0 0 1 .5-.5zm.5 4.5h8a.5.5 0 0 1 .5.5v.6a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-.6a.5.5 0 0 1 .5-.5z"/>
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                         </svg>
                         Game page
                     </a>
@@ -746,6 +851,28 @@
                             <path fill="#11A861" d="M6.2 12.67H2.05L4.2 8.94h4.15L6.2 12.67z"/>
                         </svg>
                         Download last build
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-fountains2024">
+            <div class="card-image-wrapper">
+                <img src="images/fountains2024/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Код в городе 2024</h3>
+                    <p class="card-text">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </div>
+                <div class="card-buttons">
+                    <a href="https://t.me/d1_01m365/323" target="_blank" class="project-link link-telegram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.703.064-1.237-.465-1.917-.911-1.063-.7-1.664-1.135-2.697-1.815-1.195-.787-.42-1.22.26-1.93.18-.185 3.255-2.986 3.315-3.24.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.79.027-.216.324-.437.893-.663 3.506-1.523 5.845-2.528 7.017-3.013 3.344-1.385 4.038-1.625 4.492-1.633.1 0 .324.025.469.143a.475.475 0 0 1 .154.341c-.006.072-.012.245-.018.423z"/>
+                        </svg>
+                        Post in blog
                     </a>
                 </div>
             </div>
@@ -776,9 +903,8 @@
                     </a>
                     <a href="https://itch.io/jam/sibgamejam-may-2024/rate/2701630" target="_blank"
                        class="project-link link-page">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
-                             fill="currentColor">
-                            <path d="M4.3 3A2.3 2.3 0 0 0 2 5.3v2.8c0 .8.4 1.5 1 2v8.6A2.3 2.3 0 0 0 5.3 21h13.4a2.3 2.3 0 0 0 2.3-2.3v-8.6c.6-.5 1-1.2 1-2V5.3A2.3 2.3 0 0 0 19.7 3H4.3zm1.2 4.4a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm13 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm-11 5.3h9a.5.5 0 0 1 .5.5v1.2a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.2a.5.5 0 0 1 .5-.5zm.5 4.5h8a.5.5 0 0 1 .5.5v.6a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-.6a.5.5 0 0 1 .5-.5z"/>
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                         </svg>
                         Game page
                     </a>
@@ -790,6 +916,87 @@
                             <path fill="#11A861" d="M6.2 12.67H2.05L4.2 8.94h4.15L6.2 12.67z"/>
                         </svg>
                         Download last build
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-outoftime">
+            <div class="card-image-wrapper">
+                <img src="images/outoftime/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Out of Time</h3>
+                    <p class="card-text">Multiplayer co-op with a static world but a dynamic understanding of its
+                        rules.</p>
+                </div>
+                <div class="card-buttons">
+                    <a href="https://itch.io/jam/sibgamejam-nov-2023/rate/2354020" target="_blank"
+                       class="project-link link-page">
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                        </svg>
+                        Game page
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-fountains2023">
+            <div class="card-image-wrapper">
+                <img src="images/fountains2023/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Код в городе 2023</h3>
+                    <p class="card-text">Creating compositions (synchronizing audio with light and water)
+                        using Sunlight Suite 2 for a fountain in
+                        the central square of Izhevsk.</p>
+                </div>
+                <div class="card-buttons">
+
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-poabab">
+            <div class="card-image-wrapper">
+                <img src="images/poabab/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Poabab</h3>
+                    <p class="card-text">Multiplayer co-op with rule switchers.</p>
+                </div>
+                <div class="card-buttons">
+                    <a href="https://itch.io/jam/sibgamejam-nov-2022/rate/1779924" target="_blank"
+                       class="project-link link-page">
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                        </svg>
+                        Game page
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="project-card" id="project-thereandback">
+            <div class="card-image-wrapper">
+                <img src="images/thereandback/01.jpg" alt="Project" class="card-img">
+            </div>
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">Туда и обратно</h3>
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-buttons">
+                    <a href="https://itch.io/jam/sibgamejam-nov-2022/rate/1779924" target="_blank"
+                       class="project-link link-page">
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M3.56 3a1 1 0 0 0-.91.59L1.08 7.37A6 6 0 0 0 1 9v6a6 6 0 0 0 6 6h10a6 6 0 0 0 6-6V9a6 6 0 0 0-.08-1.63l-1.57-3.78A1 1 0 0 0 20.44 3H3.56zm1.19 2h14.5l1.04 2.5H3.71L4.75 5zM7 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm10 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+                        </svg>
+                        Game page
                     </a>
                 </div>
             </div>
@@ -849,6 +1056,36 @@
                     });
                 }
             }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.timeline-item');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // 1. Смена активного класса у кнопок
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // 2. Логика фильтрации элементов
+                const filterValue = button.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    const categories = item.getAttribute('data-category') || '';
+                    // Разделяем строку категорий в массив
+                    const categoryArray = categories.split(' ');
+
+                    if (filterValue === 'all' || categoryArray.includes(filterValue)) {
+                        item.classList.remove('is-hidden');
+                    } else {
+                        item.classList.add('is-hidden');
+                    }
+                });
+            });
         });
     });
 </script>
